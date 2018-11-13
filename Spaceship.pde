@@ -44,7 +44,7 @@ class Spaceship extends Floater
     myColor = n;
    }
  	
-   public int getColor(){
+   public int getColor() {
    	return myColor;
    }
 
