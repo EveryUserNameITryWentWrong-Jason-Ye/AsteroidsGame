@@ -1,5 +1,5 @@
-class Asteroid extends Floater{
-  
+class Asteroid extends Floater{ 
+
   public void setX(int x) {
   	myCenterX = x;
   }  
@@ -47,39 +47,74 @@ class Asteroid extends Floater{
    public int getColor() {
    	return myColor;
    }
+
+   public void setHealth(int i) {
+   	health = i;
+   }
+
+   public int getHealth() {
+   	return health;
+
+   }
    
    private int rotSpd = ((int)(Math.random()*9)) - 4;
+   private int health = 1000;
+
+   public void damage(int n){
+   	health = health - n;
+   }
    
    public Asteroid() {
      
-     int size = (int)(Math.random()*5);
+     float size = (float)(Math.random()*2.1) + 4;
      corners = 6;
      xCorners = new float[corners];
      yCorners = new float[corners];
 
-     xCorners[0] = 10*size;
-     yCorners[0] = 0*size;
+     xCorners[0] = ((int)(Math.random()*3) + 10)*size;
+     yCorners[0] = ((int)(Math.random()*1) + 0)*size;
 
-     xCorners[1] = 6*size;
-     yCorners[1] = 7*size;
+     xCorners[1] = ((int)(Math.random()*4) + 6)*size;
+     yCorners[1] = ((int)(Math.random()*2) + 7)*size;
 
-     xCorners[2] = 0*size;
-     yCorners[2] = 12*size;
+     xCorners[2] = ((int)(Math.random()*1) + 0)*size;
+     yCorners[2] = ((int)(Math.random()*5) + 12)*size;
 
-     xCorners[3] = -5*size;
-     yCorners[3] = 6*size;
+     xCorners[3] = ((int)(Math.random()*2) + -5)*size;
+     yCorners[3] = ((int)(Math.random()*2) + 6)*size;
 
-     xCorners[4] = -8*size;
-     yCorners[4] = 2*size;
+     xCorners[4] = ((int)(Math.random()*6) + -8)*size;
+     yCorners[4] = ((int)(Math.random()*1) + 2)*size;
 
-     xCorners[5] = -5*size;
-     yCorners[5] = -9*size; 
+     xCorners[5] = ((int)(Math.random()*4) + -5)*size;
+     yCorners[5] = ((int)(Math.random()*5) + -9)*size; 
    }
 
    public void move(){
-
+    
     turn(rotSpd);
-   	super.move();
+   	 //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
+
+    //wrap around screen    
+    if(myCenterX > width + 30)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX < -30)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY > height + 30)
+    {    
+      myCenterY = 0;    
+    } 
+    
+    else if (myCenterY < -30)
+    {     
+      myCenterY = height;    
+    }   
 
    }
 
