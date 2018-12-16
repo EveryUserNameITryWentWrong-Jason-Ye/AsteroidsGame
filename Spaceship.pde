@@ -1,51 +1,51 @@
 class Spaceship extends Floater  
 {  
   public void setX(int x) {
-  	myCenterX = x;
+    myCenterX = x;
   }  
   
   public int getX() {
-  	return (int)myCenterX;
+    return (int)myCenterX;
   }   
   
   public void setY(int y) {
-  	myCenterY = y;
+    myCenterY = y;
   }
   
   public int getY() {
-  	return (int)myCenterY;
+    return (int)myCenterY;
   }  
   
   public void setDirectionX(double x) {
-  	myDirectionX = x;
+    myDirectionX = x;
   }   
   
    public double getDirectionX() {
-   	return myDirectionX;
+     return myDirectionX;
    }   
   
    public void setDirectionY(double y) {
-   	myDirectionY = y;
+     myDirectionY = y;
    }   
   
    public double getDirectionY() {
-   	return myDirectionY;
+     return myDirectionY;
    }   
   
    public void setPointDirection(int degrees) {
-   	myPointDirection = degrees;
+     myPointDirection = degrees;
    }  
   
    public double getPointDirection() {
-   	return myPointDirection;
+     return myPointDirection;
    } 
 
    public void setColor(int n) {
     myColor = n;
    }
- 	
+   
    public int getColor() {
-   	return myColor;
+     return myColor;
    }
 
    public void move ()   //move the floater in the current direction of travel
@@ -147,8 +147,4 @@ class Spaceship extends Floater
     
   }
 
-
 }
-
-
-

@@ -1,58 +1,58 @@
 class Bullet extends Floater{
   
   public void setX(int x) {
-  	myCenterX = x;
+    myCenterX = x;
   }  
   
   public int getX() {
-  	return (int)myCenterX;
+    return (int)myCenterX;
   }   
   
   public void setY(int y) {
-  	myCenterY = y;
+    myCenterY = y;
   }
   
   public int getY() {
-  	return (int)myCenterY;
+    return (int)myCenterY;
   }  
   
   public void setDirectionX(double x) {
-  	myDirectionX = x;
+    myDirectionX = x;
   }   
   
    public double getDirectionX() {
-   	return myDirectionX;
+     return myDirectionX;
    }   
   
    public void setDirectionY(double y) {
-   	myDirectionY = y;
+     myDirectionY = y;
    }   
   
    public double getDirectionY() {
-   	return myDirectionY;
+     return myDirectionY;
    }   
   
    public void setPointDirection(int degrees) {
-   	myPointDirection = degrees;
+     myPointDirection = degrees;
    }  
   
    public double getPointDirection() {
-   	return myPointDirection;
+     return myPointDirection;
    } 
 
    public void setColor(int n) {
     myColor = n;
    }
- 	
+   
    public int getColor() {
-   	return myColor;
+     return myColor;
    }
 
   public Bullet(Spaceship theShip){
 
     myCenterX = theShip.getX();
     myCenterY = theShip.getY();
-    myPointDirection = theShip.getPointDirection() + (int)(Math.random()*11) - 5;
+    myPointDirection = theShip.getPointDirection() + (int)(Math.random()*9) - 4;
     double dRadians = myPointDirection*(Math.PI/180);
     myDirectionX = 8 * Math.cos(dRadians) + theShip.getDirectionX();
     myDirectionY = 8 * Math.sin(dRadians) + theShip.getDirectionY();
@@ -60,7 +60,7 @@ class Bullet extends Floater{
   }
 
   public void show(){
-  	//translate the (x,y) center of the ship to the correct position
+    //translate the (x,y) center of the ship to the correct position
     translate((float)myCenterX, (float)myCenterY);
 
     //convert degrees to radians for rotate()     
@@ -70,8 +70,8 @@ class Bullet extends Floater{
     rotate(dRadians);
 
     noStroke();
-  	fill(255, 0, 0);
-  	ellipse((float)0 + 30, (float)0, 35.0, 4.0);
+    fill(255, 0, 0);
+    ellipse((float)0 + 30, (float)0, 35.0, 4.0);
 
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);

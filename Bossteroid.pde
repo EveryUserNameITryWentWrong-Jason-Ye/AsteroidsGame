@@ -1,59 +1,59 @@
-class Asteroid extends Floater{ 
+class Bossteroid extends Floater{ 
 
   public void setX(int x) {
-  	myCenterX = x;
+    myCenterX = x;
   }  
   
   public int getX() {
-  	return (int)myCenterX;
+    return (int)myCenterX;
   }   
   
   public void setY(int y) {
-  	myCenterY = y;
+    myCenterY = y;
   }
   
   public int getY() {
-  	return (int)myCenterY;
+    return (int)myCenterY;
   }  
   
   public void setDirectionX(double x) {
-  	myDirectionX = x;
+    myDirectionX = x;
   }   
   
    public double getDirectionX() {
-   	return myDirectionX;
+     return myDirectionX;
    }   
   
    public void setDirectionY(double y) {
-   	myDirectionY = y;
+     myDirectionY = y;
    }   
   
    public double getDirectionY() {
-   	return myDirectionY;
+     return myDirectionY;
    }   
   
    public void setPointDirection(int degrees) {
-   	myPointDirection = degrees;
+     myPointDirection = degrees;
    }  
   
    public double getPointDirection() {
-   	return myPointDirection;
+     return myPointDirection;
    } 
 
    public void setColor(int n) {
     myColor = n;
    }
- 	
+   
    public int getColor() {
-   	return myColor;
+     return myColor;
    }
 
    public void setHealth(int i) {
-   	health = i;
+     health = i;
    }
 
    public int getHealth() {
-   	return health;
+     return health;
 
    }
    
@@ -61,12 +61,12 @@ class Asteroid extends Floater{
    private int health = 1000;
 
    public void damage(int n){
-   	health = health - n;
+     health = health - n;
    }
    
-   public Asteroid() {
+   public Bossteroid() {
      
-     float size = (float)(Math.random()*2.1) + 4;
+     float size = (float)(Math.random()*4) + 20;
      corners = 6;
      xCorners = new float[corners];
      yCorners = new float[corners];
@@ -88,30 +88,31 @@ class Asteroid extends Floater{
 
      xCorners[5] = ((int)(Math.random()*4) + -5)*size;
      yCorners[5] = ((int)(Math.random()*5) + -9)*size; 
+     
    }
-
+  
    public void move(){
     
     turn(rotSpd);
-   	 //change the x and y coordinates by myDirectionX and myDirectionY       
+      //change the x and y coordinates by myDirectionX and myDirectionY       
     myCenterX += myDirectionX;    
     myCenterY += myDirectionY;     
 
     //wrap around screen    
-    if(myCenterX > width + 30)
+    if(myCenterX > width + 200)
     {     
       myCenterX = 0;    
     }    
-    else if (myCenterX < -30)
+    else if (myCenterX < -200)
     {     
       myCenterX = width;    
     }    
-    if(myCenterY > height + 30)
+    if(myCenterY > height + 200)
     {    
       myCenterY = 0;    
     } 
     
-    else if (myCenterY < -30)
+    else if (myCenterY < -200)
     {     
       myCenterY = height;    
     }   

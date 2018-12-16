@@ -1,4 +1,4 @@
-class sideBullet extends Floater{
+class RandomCannon extends Floater{
   
   public void setX(int x) {
     myCenterX = x;
@@ -47,15 +47,15 @@ class sideBullet extends Floater{
    public int getColor() {
      return myColor;
    }
-   
-  public sideBullet(Spaceship theShip){
+
+  public RandomCannon(Spaceship theShip){
 
     myCenterX = theShip.getX();
     myCenterY = theShip.getY();
-    myPointDirection = theShip.getPointDirection();
+    myPointDirection = theShip.getPointDirection() + (int)(Math.random()*361) - 180;
     double dRadians = myPointDirection*(Math.PI/180);
-    myDirectionX = 16 * Math.cos(dRadians) + theShip.getDirectionX();
-    myDirectionY = 16 * Math.sin(dRadians) + theShip.getDirectionY();
+    myDirectionX = 8 * Math.cos(dRadians) + theShip.getDirectionX();
+    myDirectionY = 8 * Math.sin(dRadians) + theShip.getDirectionY();
 
   }
 
@@ -70,16 +70,13 @@ class sideBullet extends Floater{
     rotate(dRadians);
 
     noStroke();
-    fill(255, 0, 0);
-    ellipse((float)18, (float)39, 8.0, 4);
+    fill(254, 255, 0);
+    ellipse((float)0 + 30, (float)0, 10.0, 4.0);
 
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }
-
-
-
 
 
 
