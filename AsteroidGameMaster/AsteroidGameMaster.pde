@@ -238,8 +238,8 @@ public void draw(){
      N50.get(nI).damage(10);
    }
    if(health <= 0){
-     //N49.setX(10000);
-     //N49.setY(10000);
+     N49.setX(10000);
+     N49.setY(10000);
    }
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
@@ -269,7 +269,7 @@ for(int nI = 0; nI < N50.size(); nI++)
 for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N46.size(); a++){
    float d2 = dist(N46.get(a).getX(), N46.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d2 < 180){
+   if(d2 < 170){
     N50.get(nI).setColor(asteroidsHit);
     N50.get(nI).show();
     N50.get(nI).damage(60);
@@ -293,7 +293,7 @@ for(int nI = 0; nI < N50.size(); nI++)
 for(int nI = 0; nI < N50.size(); nI++)
    for(int o = 0; o < N45.size(); o++){
    float d = dist(N45.get(o).getX(), N45.get(o).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d < 180){
+   if(d < 170){
      N50.get(nI).damage(10);
      N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
@@ -317,7 +317,7 @@ for(int nI = 0; nI < N50.size(); nI++)
  for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N44.size(); a++){
    float d1 = dist(N44.get(a).getX(), N44.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d1 < 180){
+   if(d1 < 170){
      N50.get(nI).damage(10);
      N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
@@ -341,7 +341,7 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N39.size(); a++){
    float d1 = dist(N39.get(a).getX(), N39.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d1 < 180){
+   if(d1 < 170){
      N50.get(nI).damage(20);
      N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
@@ -365,7 +365,7 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N41.size(); a++){
    float d1 = dist(N41.get(a).getX(), N41.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d1 < 180){
+   if(d1 < 170){
      N50.get(nI).damage(75);
      N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
@@ -389,7 +389,7 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N40.size(); a++){
    float d1 = dist(N40.get(a).getX(), N40.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d1 < 180){
+   if(d1 < 170){
      N50.get(nI).damage(75);
      N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
@@ -413,7 +413,7 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N43.size(); a++){
    float d3 = dist(N43.get(a).getX(), N43.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d3 < 180){
+   if(d3 < 170){
      N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).damage(300);
      N50.get(nI).show();
