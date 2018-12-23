@@ -10,18 +10,20 @@ ArrayList <RotShield> N42;
 ArrayList <WingCannon> N41;
 ArrayList <WingCannon2> N40;
 ArrayList <RandomCannon> N39;
-ArrayList <Laser> N38;
 
 color asteroids;
 color asteroidsHit;
-color bossteroid;
 
-boolean qPressed = false;
 boolean wPressed = false;
+boolean sPressed = false;
+boolean aPressed = false;
+boolean dPressed = false;
+boolean hPressed = false;
+boolean spPressed = false;
+boolean gPressed = false;
+boolean rPressed = false;
 
-int buff = 0;
 float shieldCount = 0;
-float laserCharge = 100;
 int difficulty = 6;
 float Pct = 0.0;
 int rotSpin = 0; 
@@ -35,16 +37,15 @@ int stage = 1;
 public void setup() 
 {
  
- size(1000, 1000);
+ size(1370, 700);
  
  asteroids = color(170, 161, 161);
  asteroidsHit = color(198, 190, 190);
- bossteroid = color(111, 111, 102);
 
  N49 = new Spaceship();
  N49.setColor(255);
- N49.setX(500);
- N49.setY(500);
+ N49.setX(685);
+ N49.setY(350);
  N49.setPointDirection(270);
  
  N46 = new ArrayList<Bullet>();
@@ -55,7 +56,6 @@ public void setup()
  N41 = new ArrayList<WingCannon>();
  N40 = new ArrayList<WingCannon2>();
  N39 = new ArrayList<RandomCannon>();
- N38 = new ArrayList<Laser>();
 
  N42.add(new RotShield(N49));
 
@@ -85,7 +85,7 @@ public void setup()
    N50.get(i).setHealth(5000);
 
  }
-
+ 
  
  
 }
@@ -94,9 +94,13 @@ public void setup()
 public void draw(){
 
  frameRate(999);
-
- background(33, 32, 32);
- 
+ if(key == 'f' || hPressed){
+   fill(0,10);
+   rect(0, 0, width, height);
+ }
+ else{
+   background(33, 32, 32);
+ }
  
  for(int nI = 0; nI < N47.length; nI++){
    N47[nI].show();
@@ -149,15 +153,6 @@ public void draw(){
      }
   }
   
-  //Laser Show
-  for(int b = 0; b < N38.size(); b++){
-    N38.get(b).show();
-    N38.get(b).move();
-     if(N38.get(b).getX() == width || N38.get(b).getY() == height || N38.get(b).getX() == 0 || N38.get(b).getY() == 0){
-       N38.remove(b);
-     }
-  }
-  
   //WingCannon Show
   for(int b = 0; b < N41.size(); b++){
     N41.get(b).show();
@@ -197,20 +192,17 @@ public void draw(){
    //Ship Show
    N49.show();
    N49.move();
-   N49.update();
-   shoot();
 
    //Asteroids Spawn
    if(N48.size() == 0){
-    buff += 10;
-    N48 = new ArrayList<Asteroid>();
-    for(int i = 0; i < difficulty; i++){
-    N48.add(new Asteroid());
-    N48.get(i).setX(width + 60);
-    N48.get(i).setY(height + 60);
-    N48.get(i).setDirectionX((Math.random()*2.4) - 1.2);
-    N48.get(i).setDirectionY((Math.random()*2.4) - 1.2);
-    N48.get(i).setHealth(700 + buff);
+   N48 = new ArrayList<Asteroid>();
+   for(int i = 0; i < difficulty; i++){
+   N48.add(new Asteroid());
+   N48.get(i).setX(width + 60);
+   N48.get(i).setY(height + 60);
+   N48.get(i).setDirectionX((Math.random()*2.4) - 1.2);
+   N48.get(i).setDirectionY((Math.random()*2.4) - 1.2);
+   N48.get(i).setHealth(700);
    }
    difficulty++;
    stage++;
@@ -235,22 +227,19 @@ public void draw(){
  
  //ship Collision
  for(int nI = 0; nI < N50.size(); nI++){
-   N50.get(nI).setColor(bossteroid);
+   N50.get(nI).setColor(asteroids);
    N50.get(nI).show();
    N50.get(nI).move();
    float ds = dist(N49.getX(), N49.getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(ds < 195){
+   if(ds < 180 && key != 'f' && !hPressed){
      health = health - 10;
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
      N50.get(nI).damage(10);
    }
    if(health <= 0){
      N49.setX(10000);
      N49.setY(10000);
-     fill(255);
-     textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);
    }
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
@@ -262,19 +251,14 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N42.size(); a++){
    float d9 = dist(N42.get(a).getX(), N42.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d9 < 100){
-    N50.get(nI).setColor(asteroidsHit - 20);
-    N50.get(nI).show();
     N50.get(nI).damage(500);
     N42.remove(a);
     break;
    }
-   if(N50.get(nI).getHealth() <= 0){
+   if(N50.get(nI).getHealth() <= 0 && key != 'f' && !hPressed){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      break;
@@ -286,7 +270,7 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N46.size(); a++){
    float d2 = dist(N46.get(a).getX(), N46.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d2 < 170){
-    N50.get(nI).setColor(asteroidsHit - 20);
+    N50.get(nI).setColor(asteroidsHit);
     N50.get(nI).show();
     N50.get(nI).damage(60);
     N46.remove(a);
@@ -295,10 +279,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      if(N42.size() < 1){
@@ -314,7 +295,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    float d = dist(N45.get(o).getX(), N45.get(o).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d < 170){
      N50.get(nI).damage(10);
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
      N45.remove(o);
      break;
@@ -322,10 +303,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      if(N42.size() < 1){
@@ -341,7 +319,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    float d1 = dist(N44.get(a).getX(), N44.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d1 < 170){
      N50.get(nI).damage(10);
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
      N44.remove(a);
      break;
@@ -349,10 +327,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      if(N42.size() < 1){
@@ -368,7 +343,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    float d1 = dist(N39.get(a).getX(), N39.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d1 < 170){
      N50.get(nI).damage(20);
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
      N39.remove(a);
      break;
@@ -376,10 +351,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      if(N42.size() < 1){
@@ -395,7 +367,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    float d1 = dist(N41.get(a).getX(), N41.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d1 < 170){
      N50.get(nI).damage(75);
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
      N41.remove(a);
      break;
@@ -403,10 +375,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      if(N42.size() < 1){
@@ -422,7 +391,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    float d1 = dist(N40.get(a).getX(), N40.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d1 < 170){
      N50.get(nI).damage(75);
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).show();
      N40.remove(a);
      break;
@@ -430,10 +399,7 @@ for(int nI = 0; nI < N50.size(); nI++)
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
      if(shieldCount < 100){
-     shieldCount = shieldCount + 8;
-     }
-     if(laserCharge < 100){
-       laserCharge += 10;
+     shieldCount = shieldCount + 15;
      }
      asteroidsKill = asteroidsKill + 500;
      if(N42.size() < 1){
@@ -448,28 +414,10 @@ for(int nI = 0; nI < N50.size(); nI++)
   for(int a = 0; a < N43.size(); a++){
    float d3 = dist(N43.get(a).getX(), N43.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
    if(d3 < 170){
-     N50.get(nI).setColor(asteroidsHit - 20);
+     N50.get(nI).setColor(asteroidsHit);
      N50.get(nI).damage(300);
      N50.get(nI).show();
      N43.remove(a);
-     break;
-   }
-   if(N50.get(nI).getHealth() <= 0){
-     N50.remove(nI);
-     asteroidsKill = asteroidsKill + 500;
-     break;
-   }
-  }
- 
-//Laser Collision
-  for(int nI = 0; nI < N50.size(); nI++)
-  for(int a = 0; a < N38.size(); a++){
-   float d3 = dist(N38.get(a).getX(), N38.get(a).getY(), N50.get(nI).getX(), N50.get(nI).getY());
-   if(d3 < 190){
-     N50.get(nI).setColor(asteroidsHit - 20);
-     N50.get(nI).damage(100);
-     N50.get(nI).show();
-     N38.remove(a);
      break;
    }
    if(N50.get(nI).getHealth() <= 0){
@@ -488,18 +436,15 @@ for(int nI = 0; nI < N50.size(); nI++)
    N48.get(nI).show();
    N48.get(nI).move();
    float ds = dist(N49.getX(), N49.getY(), N48.get(nI).getX(), N48.get(nI).getY());
-   if(ds < 100){
+   if(ds < 100 && key != 'f' && !hPressed){
      health = health - 1;
      N48.get(nI).setColor(asteroidsHit);
      N48.get(nI).show();
      N48.get(nI).damage(10);
    }
    if(health <= 0){
-     N49.setX(10000);
-     N49.setY(10000);
-     fill(255);
-     textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);
+     //N49.setX(10000);
+     //N49.setY(10000);
    }
    if(N48.get(nI).getHealth() <= 0){
      N48.remove(nI);
@@ -515,13 +460,10 @@ for(int nI = 0; nI < N48.size(); nI++)
     N42.remove(a);
     break;
    }
-   if(N48.get(nI).getHealth() <= 0){
+   if(N48.get(nI).getHealth() <= 0 && key != 'f' && !hPressed){
      N48.remove(nI);
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
-     }
-     if(laserCharge < 100){
-       laserCharge += 2;
      }
      asteroidsKill = asteroidsKill + 50;
      
@@ -544,9 +486,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      N48.remove(nI);
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
-     }
-     if(laserCharge < 100){
-       laserCharge += 2;
      }
      asteroidsKill = asteroidsKill + 50;
      if(N42.size() < 1){
@@ -573,9 +512,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
      }
-     if(laserCharge < 100){
-       laserCharge += 2;
-     }
      asteroidsKill = asteroidsKill + 50;
      if(N42.size() < 1){
        shieldGen++;
@@ -600,9 +536,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      N48.remove(nI);
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
-     }
-     if(laserCharge < 100){
-       laserCharge += 2;
      }
      asteroidsKill = asteroidsKill + 50;
      if(N42.size() < 1){
@@ -629,9 +562,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
      }
-     if(laserCharge < 100){
-       laserCharge += 2;
-     }
      asteroidsKill = asteroidsKill + 50;
      if(N42.size() < 1){
        shieldGen++;
@@ -657,9 +587,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
      }
-     if(laserCharge < 100){
-       laserCharge += 2;
-     }
      asteroidsKill = asteroidsKill + 50;
      if(N42.size() < 1){
        shieldGen++;
@@ -684,9 +611,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      N48.remove(nI);
      if(shieldCount < 100){
      shieldCount = shieldCount + 1;
-     }
-     if(laserCharge < 100){
-       laserCharge += 2;
      }
      asteroidsKill = asteroidsKill + 50;
      if(N42.size() < 1){
@@ -715,51 +639,21 @@ for(int nI = 0; nI < N48.size(); nI++)
      break;
    }
   }
-  
-//Laser Collision
-  for(int nI = 0; nI < N48.size(); nI++)
-  for(int a = 0; a < N38.size(); a++){
-   float d3 = dist(N38.get(a).getX(), N38.get(a).getY(), N48.get(nI).getX(), N48.get(nI).getY());
-   if(d3 < 70){
-     N48.get(nI).setColor(asteroidsHit - 20);
-     N48.get(nI).damage(100);
-     N48.get(nI).show();
-     N38.remove(a);
-     break;
-   }
-   if(N48.get(nI).getHealth() <= 0){
-     N48.remove(nI);
-     asteroidsKill = asteroidsKill + 500;
-     break;
-   }
-  }
-  
-  //Laser Bar
-  fill(255);
-  textSize(20);
-  text("Laser Charge: " + laserCharge + '%', 403, 933);
-  fill(207, 255, 0);
-  noStroke();
-  rect(450, 940, laserCharge, 40);
-  stroke(255);
-  noFill();
-  rect(449, 939, 101, 41);
+   
 
   //MegaBomb Bar
   fill(255);
-  textSize(20);
-  text("Mega Bomb Charge: " + shieldCount + '%', 22, 933);
+  text("Mega Bomb Charge: " + shieldCount + '%', 50, 633);
   fill(45, 126, 255);
   noStroke();
-  rect(90, 940, shieldCount, 40);
+  rect(110, 640, shieldCount, 40);
   stroke(255);
   noFill();
-  rect(89, 939, 101, 41);
+  rect(109, 639, 101, 41);
 
   //Ship Health Bar
   fill(255);
-  textSize(20);
-  text("Health: " + health + '%', 780, 933);
+  text("Health: " + health + '%', 800, 633);
   if(health > 45){
     fill(66, 244, 69);
   }
@@ -770,10 +664,10 @@ for(int nI = 0; nI < N48.size(); nI++)
     fill(232, 4, 4);
   }
   noStroke();
-  rect(800, 940, health, 40);
+  rect(800, 640, health, 40);
   stroke(255);
   noFill();
-  rect(799, 939, 101, 41);
+  rect(799, 639, 101, 41);
   
   //Bossteroid Health Bar
   if(N50.size() > 0){
@@ -787,71 +681,134 @@ for(int nI = 0; nI < N48.size(); nI++)
  }
   fill(255, 255, 255);
   textSize(20);
-  text("High Score: " + highScore, 435, 35);
- 
+  if(key != 'f' && !hPressed){
+  text("High Score: " + highScore, 630, 35);
+ }
  
  //Stage Count
- textSize(20);
  text("Stage " + stage, 30, 35);
  
+  if(key == 'f') {
+    frameRate(30);
+    hyperSpace();
+  }
+  else{
+    frameRate(999);
+  }
 
-
- 
  if(keyPressed) {
-
-   if(qPressed && shieldCount > 0){
+   if(wPressed){
+     N49.accelerate(0.1);
+   }
+   if(sPressed){
+     N49.accelerate(-0.1);
+   }
+   if(aPressed){
+     N49.turn(-2);
+     
+   }
+   if(dPressed){
+     N49.turn(2);
+     
+   }
+   if(hPressed){
+     hyperDrive();
+   }
+   if(spPressed){
+     shoot();
+   }
+   if(gPressed && shieldCount > 0){
      shield();
      shieldCount--;
    }
-  
-  if(wPressed && laserCharge > 0){
-    laser();
-    laserCharge--;
-  }
- 
+   if(rPressed){
+     //addAsteroids();
+   }
  }
+
      
 }
 
+void hyperSpace() {
 
+  N49.setX((int)(Math.random()*1369) + 1);
+  N49.setY((int)(Math.random()*699) + 1);
+
+}
 
 void hyperDrive() {
   N49.accelerate(0.65);
 }
 
 void keyPressed() {
-
-  if(key == 'q'){
-    qPressed = true;
-  }
+  
   if(key == 'w'){
     wPressed = true;
+  }
+  if(key == 's'){
+    sPressed = true;
+  }
+  if(key == 'a'){
+    aPressed = true;
+  }
+  if(key == 'd'){
+    dPressed = true;
+  }
+  if(key == 'e'){
+    hPressed = true;
+  }
+  if(key == ' '){
+    spPressed = true;
+  }
+  if(key == 'g'){
+    gPressed = true;
+  }
+  if(key == 'r'){
+    rPressed = true;
   }
 
 }
 
 void keyReleased() {
-
-  if(key == 'q'){
-    qPressed = false;
-  }
+  
   if(key == 'w'){
     wPressed = false;
+  }
+  if(key == 's'){
+    sPressed = false;
+  }
+  if(key == 'a'){
+    aPressed = false;
+  }
+  if(key == 'd'){
+    dPressed = false;
+  }
+  if(key == 'e'){
+    hPressed = false;
+  } 
+  if(key == ' '){
+    spPressed = false;
+  }
+  if(key == 'g'){
+    gPressed = false;
+  }
+  if(key == 'r'){
+    rPressed = false;
   }
 
 }
 
 void shoot(){
-  if(frameCount % 10 == 0){
+  if(frameCount % 10 == 0 && key != 'f' && !hPressed){
   N46.add(new Bullet(N49));
   N45.add(new sideBullet(N49));
   N44.add(new sideBullet2(N49));
  }
- if(frameCount % 150 == 0){
+ if(frameCount % 150 == 0 && key != 'f' && !hPressed){
    N41.add(new WingCannon(N49));
    N40.add(new WingCannon2(N49));
  }
- if(frameCount % 20 == 0){
+ if(frameCount % 20 == 0 && key != 'f' && !hPressed){
    N39.add(new RandomCannon(N49));
  }
 }
@@ -859,11 +816,5 @@ void shoot(){
 void shield() {
   for(int i = 0; i < 10; i++){
   N43.add(new Missiles(N49));
-  }
-}
-
-void laser() {
-  for(int i = 0; i < 10; i++){
-    N38.add(new Laser(N49));
   }
 }

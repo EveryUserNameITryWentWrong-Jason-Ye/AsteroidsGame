@@ -1,12 +1,5 @@
 class Spaceship extends Floater  
 {  
-  
-
-  PVector Location;
-  PVector Velocity;
-  PVector Acceleration;
-  float maxSpeed;
-  
   public void setX(int x) {
     myCenterX = x;
   }  
@@ -67,34 +60,10 @@ class Spaceship extends Floater
     myDirectionY = myDirectionY * 0.97;      
       
   } 
-  
+
    
 
-   public void update() {
-
-    PVector Mouse = new PVector(mouseX,mouseY);
-    PVector Acceleration = PVector.sub(Mouse,Location);
-    // Set magnitude of acceleration
-    Acceleration.setMag(0.2);
-    
-    // Velocity changes according to acceleration
-    Velocity.add(Acceleration);
-    // Limit the velocity by topspeed
-    Velocity.limit(maxSpeed);
-    // Location changes by velocity
-    Location.add(Velocity);
-    
-    myCenterX = Location.x;
-    myCenterY = Location.y;
-  }
-
    public Spaceship() {
-     
-     // Start in the center
-    Location = new PVector(width/2,height/2);
-    Velocity = new PVector(0,0);
-    maxSpeed = 5;
-    
     corners = 25;
     xCorners = new float[corners];
     yCorners = new float[corners];
@@ -174,7 +143,6 @@ class Spaceship extends Floater
     //25
     xCorners[24] = 14*3.5;
     yCorners[24] = -1*3.5;
-    
     
     
   }

@@ -10,9 +10,9 @@ class Star{
     public void show(){
       fill(255, 247, 0);
       ellipse(myX, myY, 4, 4);
-      if(myY == 1005){
+      if(myY == 705){
           myY = 0;
-          myX = (int)(Math.random()* 999) + 1;
+          myX = (int)(Math.random()*1369) + 1;
         }
     
     }
