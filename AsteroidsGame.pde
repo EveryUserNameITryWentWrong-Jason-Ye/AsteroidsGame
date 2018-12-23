@@ -195,11 +195,13 @@ public void draw(){
   
   
    //Ship Show
+ if(health > 0){
    N49.show();
    N49.move();
-	 N49.setX(mouseX);
-	 N49.setY(mouseY);
+   N49.setX(mouseX);
+   N49.setY(mouseY);
    shoot();
+  }
 
    //Asteroids Spawn
    if(N48.size() == 0){
