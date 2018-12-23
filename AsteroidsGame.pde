@@ -195,14 +195,30 @@ public void draw(){
   
   
    //Ship Show
+ if(frameCount < 80){
+   textSize(30);
+   fill(255);
+   text("Click the Screen", 335, 300);
+ }
+ if(frameCount > 80 && frameCount < 260){
+   textSize(30);
+   fill(255);
+   text("Hover Your Mouse Over the Ship,", 230, 300);
+   text("It Will Follow Your Mouse!", 270, 330);
+ }
+ if(frameCount > 260 && frameCount < 340){
+   textSize(30);
+   fill(255);
+   text("Go!", 420, 300);
+ }
  if(health > 0){
    N49.show();
    N49.move();
-  if(frameCount > 240){
+  if(frameCount > 340){
    N49.setX(mouseX);
    N49.setY(mouseY);
-  }
    shoot();
+   }
   }
 
    //Asteroids Spawn
@@ -742,7 +758,7 @@ for(int nI = 0; nI < N48.size(); nI++)
   //Laser Bar
   fill(255);
   textSize(20);
-  text("Laser Charge: " + laserCharge + ' %', 343, 833);
+  text("Laser Charge: " + laserCharge + " %", 343, 833);
   fill(207, 255, 0);
   noStroke();
   rect(380, 840, laserCharge, 40);
@@ -753,7 +769,7 @@ for(int nI = 0; nI < N48.size(); nI++)
   //MegaBomb Bar
   fill(255);
   textSize(20);
-  text("Mega Bomb Charge: " + shieldCount + ' %', 22, 833);
+  text("Mega Bomb Charge: " + shieldCount + " %", 22, 833);
   fill(45, 126, 255);
   noStroke();
   rect(90, 840, shieldCount, 40);
@@ -764,7 +780,7 @@ for(int nI = 0; nI < N48.size(); nI++)
   //Ship Health Bar
   fill(255);
   textSize(20);
-  text("Health: " + health + ' %', 680, 833);
+  text("Health: " + health + " %", 680, 833);
   if(health > 45){
     fill(66, 244, 69);
   }
@@ -799,7 +815,9 @@ for(int nI = 0; nI < N48.size(); nI++)
  textSize(20);
  text("Stage " + stage, 30, 35);
  
-
+ textSize(20);
+ fill(255, 0, 0);
+ text("Read Footer Below!!", 700, 30);
 
  
  if(keyPressed) {
