@@ -197,7 +197,8 @@ public void draw(){
    //Ship Show
    N49.show();
    N49.move();
-   N49.update();
+   N49.setX(mouseX);
+   N49.setY(mouseY);
    shoot();
 
    //Asteroids Spawn
