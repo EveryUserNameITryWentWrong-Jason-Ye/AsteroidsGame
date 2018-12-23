@@ -802,12 +802,12 @@ for(int nI = 0; nI < N48.size(); nI++)
  
  if(keyPressed) {
 
-   if(qPressed && shieldCount > 0){
+   if(qPressed && shieldCount > 0 && health > 0){
      shield();
      shieldCount--;
    }
   
-  if(wPressed && laserCharge > 0){
+  if(wPressed && laserCharge > 0 && health > 0){
     laser();
     laserCharge--;
   }
