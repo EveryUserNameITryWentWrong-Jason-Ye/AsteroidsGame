@@ -21,7 +21,7 @@ boolean wPressed = false;
 
 int buff = 0;
 float shieldCount = 0;
-float laserCharge = 100;
+float laserCharge = 0;
 int difficulty = 6;
 float Pct = 0.0;
 int rotSpin = 0; 
@@ -197,8 +197,8 @@ public void draw(){
    //Ship Show
    N49.show();
    N49.move();
-   N49.setX(mouseX);
-   N49.setY(mouseY);
+	 N49.setX(mouseX);
+	 N49.setY(mouseY);
    shoot();
 
    //Asteroids Spawn
@@ -814,11 +814,6 @@ for(int nI = 0; nI < N48.size(); nI++)
      
 }
 
-
-
-void hyperDrive() {
-  N49.accelerate(0.65);
-}
 
 void keyPressed() {
 
