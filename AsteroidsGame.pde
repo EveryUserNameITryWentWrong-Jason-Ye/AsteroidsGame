@@ -93,7 +93,7 @@ public void setup()
 
 public void draw(){
 
- frameRate(999);
+ frameRate(120);
 
  background(33, 32, 32);
  
@@ -247,11 +247,11 @@ public void draw(){
      N50.get(nI).damage(10);
    }
    if(health <= 0){
-     /*N49.setX(10000);
+     N49.setX(10000);
      N49.setY(10000);
      fill(255);
      textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);*/
+     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);
    }
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
@@ -496,11 +496,11 @@ for(int nI = 0; nI < N50.size(); nI++)
      N48.get(nI).damage(10);
    }
    if(health <= 0){
-     /*N49.setX(10000);
+     N49.setX(10000);
      N49.setY(10000);
      fill(255);
      textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);*/
+     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);
    }
    if(N48.get(nI).getHealth() <= 0){
      N48.remove(nI);
