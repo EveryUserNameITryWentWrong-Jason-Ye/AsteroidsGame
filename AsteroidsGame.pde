@@ -43,8 +43,8 @@ public void setup()
 
  N49 = new Spaceship();
  N49.setColor(255);
- N49.setX(500);
- N49.setY(500);
+ N49.setX(450);
+ N49.setY(450);
  N49.setPointDirection(270);
  
  N46 = new ArrayList<Bullet>();
@@ -198,8 +198,10 @@ public void draw(){
  if(health > 0){
    N49.show();
    N49.move();
+  if(frameCount > 240){
    N49.setX(mouseX);
    N49.setY(mouseY);
+  }
    shoot();
   }
 
