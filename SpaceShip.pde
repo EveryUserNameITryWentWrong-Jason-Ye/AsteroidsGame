@@ -64,8 +64,10 @@ class Spaceship extends Floater
   } 
   
 
+
    public Spaceship() {
-    
+     
+
     corners = 25;
     xCorners = new float[corners];
     yCorners = new float[corners];
