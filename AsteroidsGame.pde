@@ -271,7 +271,7 @@ public void draw(){
      N49.setY(10000);
      fill(255);
      textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 85, 500);
+     text("Game Over, Enjoy Watching the Asteroids!", 80, 500);
    }
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
@@ -520,7 +520,7 @@ for(int nI = 0; nI < N50.size(); nI++)
      N49.setY(10000);
      fill(255);
      textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 85, 500);
+     text("Game Over, Enjoy Watching the Asteroids!", 80, 500);
    }
    if(N48.get(nI).getHealth() <= 0){
      N48.remove(nI);
@@ -803,7 +803,7 @@ for(int nI = 0; nI < N48.size(); nI++)
   }
   
   //High Score
-  if(health > 0){
+  if(health > 0 && frameCount > 340){
   highScore = frameCount + asteroidsKill;
  }
   fill(255, 255, 255);
