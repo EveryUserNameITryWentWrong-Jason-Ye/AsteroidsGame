@@ -804,7 +804,7 @@ for(int nI = 0; nI < N48.size(); nI++)
   
   //High Score
   if(health > 0 && frameCount > 340){
-  highScore = frameCount + asteroidsKill;
+  highScore = frameCount - 340 + asteroidsKill;
  }
   fill(255, 255, 255);
   textSize(20);
