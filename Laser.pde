@@ -70,7 +70,7 @@ class Laser extends Floater{
     rotate(dRadians);
 
     noStroke();
-    fill(207, 255, 0);
+    fill(33, 32, 32);
     ellipse(30, 0, 35, 6);
 
     //"unrotate" and "untranslate" in reverse order
