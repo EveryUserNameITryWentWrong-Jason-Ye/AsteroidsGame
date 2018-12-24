@@ -96,6 +96,7 @@ public void draw(){
  frameRate(120);
 
  background(33, 32, 32);
+	
  
  
  for(int nI = 0; nI < N47.length; nI++){
@@ -193,6 +194,22 @@ public void draw(){
     N42.get(b).setY(N49.getY());
   }
   
+	if(keyPressed) {
+
+   if(qPressed && shieldCount > 0 && health > 0){
+     shield();
+     shieldCount--;
+   }
+		
+	if(wPressed && laserCharge > 0 && health > 0){
+		laser();
+    laserCharge--;
+		fill(207, 255, 0);
+		rect(mouseX - 5, mouseY, 11, -1000);
+  }
+  
+ 
+ }
   
    //Ship Show
  if(frameCount < 80){
@@ -220,6 +237,7 @@ public void draw(){
    shoot();
    }
   }
+	
 
    //Asteroids Spawn
    if(N48.size() == 0){
@@ -819,20 +837,6 @@ for(int nI = 0; nI < N48.size(); nI++)
  fill(255, 0, 0);
  text("Read Footer Below!!", 700, 30);
 
- 
- if(keyPressed) {
-
-   if(qPressed && shieldCount > 0 && health > 0){
-     shield();
-     shieldCount--;
-   }
-  
-  if(wPressed && laserCharge > 0 && health > 0){
-    laser();
-    laserCharge--;
-  }
- 
- }
      
 }
 
