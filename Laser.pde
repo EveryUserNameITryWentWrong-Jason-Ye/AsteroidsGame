@@ -54,8 +54,8 @@ class Laser extends Floater{
     myCenterY = theShip.getY();
     myPointDirection = theShip.getPointDirection();
     double dRadians = myPointDirection*(Math.PI/180);
-    myDirectionX = 8 * Math.cos(dRadians) + theShip.getDirectionX();
-    myDirectionY = 8 * Math.sin(dRadians) + theShip.getDirectionY();
+    myDirectionX = 35 * Math.cos(dRadians) + theShip.getDirectionX();
+    myDirectionY = 35 * Math.sin(dRadians) + theShip.getDirectionY();
 
   }
 
