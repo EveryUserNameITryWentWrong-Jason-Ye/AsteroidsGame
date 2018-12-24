@@ -271,7 +271,7 @@ public void draw(){
      N49.setY(10000);
      fill(255);
      textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);
+     text("Game Over, Enjoy Watching the Asteroids!", 85, 500);
    }
    if(N50.get(nI).getHealth() <= 0){
      N50.remove(nI);
@@ -520,7 +520,7 @@ for(int nI = 0; nI < N50.size(); nI++)
      N49.setY(10000);
      fill(255);
      textSize(40);
-     text("Game Over, Enjoy Watching the Asteroids!", 100, 500);
+     text("Game Over, Enjoy Watching the Asteroids!", 85, 500);
    }
    if(N48.get(nI).getHealth() <= 0){
      N48.remove(nI);
